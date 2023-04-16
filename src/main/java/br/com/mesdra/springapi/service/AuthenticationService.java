@@ -23,10 +23,6 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(UserRequest request) {
-//        if (repository.findByEmail(request.email()).isPresent()) {
-//            throw new DuplicateKeyException("Este e-mail já foi cadastrado.");
-//        }
-
         var user = User.builder().nome(request.nome()).email(request.email()).perfil(Perfil.toEnum(2)).senha(passwordEncoder.encode(request.senha()))
                        .build();
         repository.save(user);
