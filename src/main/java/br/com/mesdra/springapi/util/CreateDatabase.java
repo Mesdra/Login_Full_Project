@@ -11,17 +11,19 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CreateDatabase {
 
-
-    public static final String PASSWORD = "123456";
+    // senha dos usuários : admin
+    public static final String PASSWORD_ADMIN = "$2a$12$8nXSix7CIdlsVZbG3r8H8OALCL0mQgbJX1i6Dqf9JDOd4jGPpzQHW";
+    // senha dos usuários : user
+    public static final String PASSWORD_USER = "$2a$12$i90fgk9G0KK1XVPeBn0M3esGUIUDDIys3GlMj4lqO/vFIcxJPSJ4K";
     private final UserRepository repository;
 
     @Bean
-    public void fillDataBase(){
+    public void fillDataBase() {
 
-        User userVini = User.builder().nome("Vinicius").senha(PASSWORD).perfil(Perfil.ADMIN).build();
-        User user = User.builder().nome("Usuario").senha(PASSWORD).perfil(Perfil.USUARIO).build();
+        User userAdm = User.builder().nome("admin").email("admin@hotmail.com").senha(PASSWORD_ADMIN).perfil(Perfil.ADMIN).build();
+        User user = User.builder().nome("user").email("user@homtail.com").senha(PASSWORD_USER).perfil(Perfil.USUARIO).build();
 
-        repository.save(userVini);
+        repository.save(userAdm);
         repository.save(user);
 
     }

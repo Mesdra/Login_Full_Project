@@ -23,7 +23,7 @@ public class VersionController {
 
     @GetMapping("/admin")
     public ResponseEntity<String> adminRequest() {
-        return ResponseEntity.ok().body("você é um administrado");
+        return ResponseEntity.ok().body("Você é um Administrado");
     }
 
 
