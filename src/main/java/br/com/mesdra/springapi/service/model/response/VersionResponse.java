@@ -1,4 +1,4 @@
-package br.com.mesdra.springapi.service.model;
+package br.com.mesdra.springapi.service.model.response;
 
 import lombok.Builder;
 

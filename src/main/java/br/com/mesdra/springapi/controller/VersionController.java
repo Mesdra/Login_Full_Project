@@ -1,7 +1,7 @@
 package br.com.mesdra.springapi.controller;
 
 
-import br.com.mesdra.springapi.service.model.VersionResponse;
+import br.com.mesdra.springapi.service.model.response.VersionResponse;
 import br.com.mesdra.springapi.service.VersionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +20,5 @@ public class VersionController {
     public ResponseEntity<VersionResponse> version() {
         return ResponseEntity.ok().body(service.getVersion());
     }
-
-    @GetMapping("/admin")
-    public ResponseEntity<String> adminRequest() {
-        return ResponseEntity.ok().body("Você é um Administrado");
-    }
-
 
 }
