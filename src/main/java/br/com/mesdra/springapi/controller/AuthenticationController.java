@@ -4,6 +4,7 @@ import br.com.mesdra.springapi.service.AuthenticationService;
 import br.com.mesdra.springapi.service.model.request.LoginRequest;
 import br.com.mesdra.springapi.service.model.request.UserRequest;
 import br.com.mesdra.springapi.service.model.response.AuthenticationResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,13 +20,13 @@ public class AuthenticationController {
     private final AuthenticationService service;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody UserRequest request) {
+    public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody UserRequest request) {
         return ResponseEntity.ok().body(service.register(request));
 
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<AuthenticationResponse> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok().body(service.login(request));
     }
 

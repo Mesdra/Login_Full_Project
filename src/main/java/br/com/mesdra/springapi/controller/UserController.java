@@ -1,25 +1,25 @@
 package br.com.mesdra.springapi.controller;
 
 
+import br.com.mesdra.springapi.service.UserService;
+import br.com.mesdra.springapi.service.model.response.UserResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/usuario")
 public class UserController {
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    @GetMapping("/admin")
-    public ResponseEntity<String> adminRequest() {
-        return ResponseEntity.ok().body("Você é um administrado autenticado");
-    }
+    private final UserService service;
 
-    @GetMapping("/")
-    public ResponseEntity<String> userRequest() {
-        return ResponseEntity.ok().body("Você é um usuario autenticado");
+    @GetMapping("/buscar")
+    public ResponseEntity<UserResponse> adminRequest(Authentication auth) {
+        return ResponseEntity.ok().body(service.findByEmail(auth.getName()));
     }
 
 }
