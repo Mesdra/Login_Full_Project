@@ -19,7 +19,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfiguration {
 
     private final JwtAutheticationFilter jwtAuthFilter;
-    private final  AuthenticationProvider authenticationProvider;
+    private final AuthenticationProvider authenticationProvider;
 
     private static final String[] PUBLIC_MATCHERS = {
             "/versao/**",
@@ -41,8 +41,10 @@ public class SecurityConfiguration {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
+
         return http.build();
     }
+
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

@@ -19,13 +19,15 @@ public class AuthenticationController {
 
     private final AuthenticationService service;
 
-    @PostMapping("/cadastrar")
+    @PostMapping(value = "/cadastrar",
+                 produces = "application/json")
     public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody UserRequest request) {
         return ResponseEntity.ok().body(service.register(request));
 
     }
 
-    @PostMapping("/login")
+    @PostMapping(value = "/login",
+                 produces = "application/json")
     public ResponseEntity<AuthenticationResponse> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok().body(service.login(request));
     }
