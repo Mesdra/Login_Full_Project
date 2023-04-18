@@ -31,5 +31,4 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok().body(service.login(request));
     }
-
 }
