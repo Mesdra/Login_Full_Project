@@ -21,7 +21,7 @@ public class CreateDatabase {
     public void fillDataBase() {
 
         User userAdm = User.builder().nome("admin").email("admin@hotmail.com").senha(PASSWORD_ADMIN).perfil(Perfil.ADMIN).build();
-        User user = User.builder().nome("user").email("user@homtail.com").senha(PASSWORD_USER).perfil(Perfil.USUARIO).build();
+        User user = User.builder().nome("user").email("user@hotmail.com").senha(PASSWORD_USER).perfil(Perfil.USUARIO).build();
 
         repository.save(userAdm);
         repository.save(user);
