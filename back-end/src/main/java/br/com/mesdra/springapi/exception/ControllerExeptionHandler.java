@@ -26,8 +26,7 @@ public class ControllerExeptionHandler {
                              .status(HttpStatus.BAD_REQUEST.value())
                              .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
                              .message(verifyDupKey(ex.getMostSpecificCause().getMessage()))
-                             .build()
-                                               );
+                             .build());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

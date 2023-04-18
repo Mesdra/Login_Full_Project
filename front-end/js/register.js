@@ -34,7 +34,11 @@ async function register(form){
         showErrors(errordiv,[{message:'Usuario ou Senha Invalido'}])
     }else{
         data = await response.json()
-        showErrors(errordiv,data.errors)
+        if(data.errors != null){
+            showErrors(errordiv,data.errors)
+        }else{
+            showErrors(errordiv,[{message:data.message}])
+        }
     }
     
     registerButton.disabled = false
