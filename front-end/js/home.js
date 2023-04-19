@@ -27,8 +27,16 @@ async function search(token){
 }
 
 async function logout(){
+    setCookie('token','')
     document.location.href = '/login.html';
 }
+
+function setCookie(cname, cvalue) {
+    const d = new Date();
+    d.setTime(d.getTime() + 60000);
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
 
 const showErrors = (input, errors) => {
 
