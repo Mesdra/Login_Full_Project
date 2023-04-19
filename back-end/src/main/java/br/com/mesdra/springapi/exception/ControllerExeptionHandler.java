@@ -19,7 +19,7 @@ public class ControllerExeptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseBody
-    public ResponseEntity<StandardError> duplicatedKeyException(DataIntegrityViolationException ex) {
+    public ResponseEntity<StandardError> dataIntegrity(DataIntegrityViolationException ex) {
         return ResponseEntity.badRequest().body(
                 StandardError.builder()
                              .timestamp(LocalDateTime.now())

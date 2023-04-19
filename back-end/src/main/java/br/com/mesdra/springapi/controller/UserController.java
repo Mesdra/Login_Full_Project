@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService service;
-
     @GetMapping("/buscar")
     public ResponseEntity<UserResponse> adminRequest(Authentication auth) {
         return ResponseEntity.ok().body(service.findByEmail(auth.getName()));
