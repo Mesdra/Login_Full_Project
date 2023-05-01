@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -22,9 +24,16 @@ public class CreateDatabase {
     @Bean
     public void fillDataBase() {
 
-        User userAdm = User.builder().nome("admin").email("admin@hotmail.com").senha(PASSWORD_ADMIN).perfil(Perfil.ADMIN).build();
-        User user = User.builder().nome("user").email("user@hotmail.com").senha(PASSWORD_USER).perfil(Perfil.USUARIO).build();
-        repository.saveAll(Arrays.asList(userAdm,user));
+        List<User> users = new ArrayList<>();
 
+        String mail = "admin@hotmail.com";
+        String mail2 = "user@hotmail.com";
+        Optional<User> userOpt = repository.findByEmail(mail);
+        Optional<User> userOpt2 = repository.findByEmail(mail2);
+        if (userOpt.isEmpty())
+            users.add(User.builder().nome("admin").email(mail).senha(PASSWORD_ADMIN).perfil(Perfil.ADMIN).build());
+        if (userOpt2.isEmpty())
+            users.add(User.builder().nome("user").email(mail2).senha(PASSWORD_USER).perfil(Perfil.USUARIO).build());
+        repository.saveAll(users);
     }
 }
