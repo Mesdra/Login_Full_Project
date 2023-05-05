@@ -1,9 +1,24 @@
-FROM maven:3.8.3-openjdk-17
-WORKDIR /home/app
-COPY src /home/app/src
-COPY pom.xml /home/app
-RUN mvn -f /home/app/pom.xml clean package -Dspring.profiles.active=dev
-RUN mv /home/app/target/web-api.jar /home/web-api.jar
-RUN rm -R /home/app
-EXPOSE 8080
-CMD ["java","-jar","/home/web-api.jar"]
+ARG BUILD_IMAGE=maven:3.8.3-openjdk-17
+ARG RUNTIME_IMAGE=openjdk:17-jdk-slim
+
+###               pull maven dependencies                   ###
+
+FROM ${BUILD_IMAGE} as dependencies
+COPY pom.xml ./
+RUN mvn -B dependency:go-offline
+
+###              build               ###
+FROM dependencies as build
+
+ARG PROFILE_PROP=dev
+COPY src ./src
+RUN mvn -B clean package \
+       -Dspring.profiles.active=${PROFILE_PROP}
+
+### run ###
+
+FROM ${RUNTIME_IMAGE}
+COPY --from=build /target/web-api.jar /app/service.jar
+CMD ["java", "-jar", "/app/service.jar"]
+
+#############################################################################################
