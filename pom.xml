@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.mesdra</groupId>
 	<artifactId>spring-api</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Spring-Api</name>
 	<description>Spring security demo project.</description>
